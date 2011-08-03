@@ -1,21 +1,25 @@
 /* Generated from orogen/lib/orogen/templates/tasks/Task.cpp */
 
 #include "Task.hpp"
+#include <message_driver/MessageDriver.hpp>
 
 using namespace message_producer;
 
 Task::Task(std::string const& name, TaskCore::TaskState initial_state)
     : TaskBase(name, initial_state)
 {
+    mpMessageDriver = new message_driver::MessageDriver();
 }
 
 Task::Task(std::string const& name, RTT::ExecutionEngine* engine, TaskCore::TaskState initial_state)
     : TaskBase(name, engine, initial_state)
 {
+    mpMessageDriver = new message_driver::MessageDriver();
 }
 
 Task::~Task()
 {
+    delete mpMessageDriver;
 }
 
 
@@ -36,10 +40,13 @@ Task::~Task()
 //         return false;
 //     return true;
 // }
-// void Task::updateHook()
-// {
-//     TaskBase::updateHook();
-// }
+void Task::updateHook()
+{
+    TaskBase::updateHook();
+
+    message_driver::Message msg = mpMessageDriver->createMessage();
+    _messages.write(msg);
+}
 // void Task::errorHook()
 // {
 //     TaskBase::errorHook();
