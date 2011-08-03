@@ -20,8 +20,8 @@ namespace message_producer {
 
 
     public:
-        Task(std::string const& name = "message_producer::Task", TaskCore::TaskState initial_state = Stopped);
-        Task(std::string const& name, RTT::ExecutionEngine* engine, TaskCore::TaskState initial_state = Stopped);
+        Task(std::string const& name = "message_producer::Task");
+        Task(std::string const& name, RTT::ExecutionEngine* engine);
 
 	~Task();
 
