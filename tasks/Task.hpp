@@ -15,6 +15,7 @@ namespace message_producer {
 	friend class TaskBase;
     protected:
 	message_driver::MessageDriver* mpMessageDriver;
+	message_driver::Config mConfig;
 
 
 
@@ -37,7 +38,7 @@ namespace message_producer {
          *     ...
          *   end
          */
-        // bool configureHook();
+         bool configureHook();
 
         /** This hook is called by Orocos when the state machine transitions
          * from Stopped to Running. If it returns false, then the component will
@@ -79,7 +80,7 @@ namespace message_producer {
          * from Stopped to PreOperational, requiring the call to configureHook()
          * before calling start() again.
          */
-        // void cleanupHook();
+         void cleanupHook();
     };
 }
 

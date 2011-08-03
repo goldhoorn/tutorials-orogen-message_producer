@@ -2,12 +2,16 @@ name "message_producer"
 
 using_library "message_driver"
 import_types_from "message_driver/Message.hpp"
+import_types_from "message_driver/Config.hpp"
 
 # Declare a new task context (i.e., a component)
 #
 # The corresponding C++ class can be edited in tasks/Task.hpp and
 # tasks/Task.cpp, and will be put in the basics_tutorial/orogen/message_producer namespace.
 task_context "Task" do
+   needs_configuration
+
+   property "config", "message_driver/Config"
 
    # An output port, i.e. an object to which the component pushes data so that
    # it is transmitted to other components' inputs
