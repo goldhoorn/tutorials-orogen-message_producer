@@ -1,0 +1,22 @@
+<package>
+  <description brief="Message producer component">
+  This component will produce simple, timestamped messages
+  </description>
+  <author>New user/new-user@rock-robotics.org</author>
+  <license></license>
+  <url>http://</url>
+  <logo>http://</logo>
+  <!--
+   To add any dependencies use the depend tag
+  <depend package="dummy-dependency-0" />
+	...
+  <depend package="dummy-dependency-n-1" />
+  <depend package="dummy-dependency-n" />
+  -->
+  <depend package="basics_tutorial/message_driver" />
+  <!--DEPEND-ENTRY-->
+  <versioncontrol type="git" url="" />
+  <export>
+    <cpp cflags="" lflags="" />
+  </export>
+</package>
