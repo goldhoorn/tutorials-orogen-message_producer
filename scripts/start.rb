@@ -3,7 +3,7 @@ require 'orocos'
 include Orocos
 Orocos.initialize
 
-Orocos.run 'message_producer_deployment' do 
+Orocos.run 'message_producer::Task' => 'message_producer' do 
 
     message_producer = TaskContext.get 'message_producer'
     

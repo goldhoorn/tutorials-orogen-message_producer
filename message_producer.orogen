@@ -16,13 +16,6 @@ task_context "Task" do
    # if this output is connected to an input or not.
    output_port "messages", "message_driver/Message"
 
+   periodic 1.0
+
 end
-
-
-# Declares a deployment, i.e. an actual executable that contains various tasks.
-deployment "message_producer_deployment" do
-    # Declares it as periodic, with a period of 100ms
-    task("message_producer", "Task").
-        periodic(1)
-end
-
