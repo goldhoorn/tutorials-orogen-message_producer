@@ -13,7 +13,7 @@
   <depend package="dummy-dependency-n-1" />
   <depend package="dummy-dependency-n" />
   -->
-  <depend package="basics_tutorial/message_driver" />
+  <depend package="tutorials/message_driver" />
   <!--DEPEND-ENTRY-->
   <versioncontrol type="git" url="" />
   <export>
