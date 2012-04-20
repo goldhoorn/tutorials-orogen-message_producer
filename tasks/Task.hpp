@@ -19,8 +19,8 @@ namespace message_producer {
 
 
     public:
-        Task(std::string const& name = "message_producer::Task", TaskCore::TaskState initial_state = Stopped);
-        Task(std::string const& name, RTT::ExecutionEngine* engine, TaskCore::TaskState initial_state = Stopped);
+        Task(std::string const& name = "message_producer::Task");
+        Task(std::string const& name, RTT::ExecutionEngine* engine);
 
 	~Task();
 
@@ -37,7 +37,7 @@ namespace message_producer {
          *     ...
          *   end
          */
-        // bool configureHook();
+         bool configureHook();
 
         /** This hook is called by Orocos when the state machine transitions
          * from Stopped to Running. If it returns false, then the component will
@@ -79,7 +79,7 @@ namespace message_producer {
          * from Stopped to PreOperational, requiring the call to configureHook()
          * before calling start() again.
          */
-        // void cleanupHook();
+        void cleanupHook();
     };
 }
 

@@ -5,21 +5,18 @@
 
 using namespace message_producer;
 
-Task::Task(std::string const& name, TaskCore::TaskState initial_state)
-    : TaskBase(name, initial_state)
+Task::Task(std::string const& name)
+    : TaskBase(name), mpMessageDriver(0)
 {
-    mpMessageDriver = new message_driver::MessageDriver();
 }
 
-Task::Task(std::string const& name, RTT::ExecutionEngine* engine, TaskCore::TaskState initial_state)
-    : TaskBase(name, engine, initial_state)
+Task::Task(std::string const& name, RTT::ExecutionEngine* engine)
+    : TaskBase(name, engine), mpMessageDriver(0)
 {
-    mpMessageDriver = new message_driver::MessageDriver();
 }
 
 Task::~Task()
 {
-    delete mpMessageDriver;
 }
 
 
@@ -28,12 +25,16 @@ Task::~Task()
 // hooks defined by Orocos::RTT. See Task.hpp for more detailed
 // documentation about them.
 
-// bool Task::configureHook()
-// {
-//     if (! TaskBase::configureHook())
-//         return false;
-//     return true;
-// }
+bool Task::configureHook()
+{
+    if (! TaskBase::configureHook())
+        return false;
+    
+    message_driver::Config configuration = _config.get();
+    mpMessageDriver = new message_driver::MessageDriver(configuration);
+
+    return true;
+}
 // bool Task::startHook()
 // {
 //     if (! TaskBase::startHook())
@@ -55,8 +56,10 @@ void Task::updateHook()
 // {
 //     TaskBase::stopHook();
 // }
-// void Task::cleanupHook()
-// {
-//     TaskBase::cleanupHook();
-// }
+void Task::cleanupHook()
+{
+    TaskBase::cleanupHook();
+
+    delete mpMessageDriver;
+}
 

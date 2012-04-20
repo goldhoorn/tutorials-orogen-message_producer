@@ -2,12 +2,20 @@ name "message_producer"
 
 using_library "message_driver"
 import_types_from "message_driver/Message.hpp"
+import_types_from "message_driver/Config.hpp" # To have the config type available
 
 # Declare a new task context (i.e., a component)
 #
 # The corresponding C++ class can be edited in tasks/Task.hpp and
 # tasks/Task.cpp, and will be put in the basics_tutorial/orogen/message_producer namespace.
 task_context "Task" do
+
+   # This means the configurationHook must be called before starting the task.
+   needs_configuration
+
+   # Add a property to the task that is read into the lib's config during configruation.
+   property "config", "message_driver/Config"
+
 
    # An output port, i.e. an object to which the component pushes data so that
    # it is transmitted to other components' inputs
