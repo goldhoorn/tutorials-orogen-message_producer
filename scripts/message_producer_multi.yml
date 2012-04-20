@@ -1,0 +1,9 @@
+--- name:default
+# no documentation available for this property
+config: 
+  uppercase: 0
+
+--- name:uppercase
+# no documentation available for this property
+config: 
+  uppercase: 1
