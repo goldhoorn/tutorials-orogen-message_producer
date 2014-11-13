@@ -16,6 +16,16 @@ task_context "Task" do
    # if this output is connected to an input or not.
    output_port "messages", "message_driver/Message"
 
+   property("dynamic","/double",1.0).dynamic
+
    periodic 1.0
 
+end
+
+deployment "sched" do
+    createTaskScheduler
+    t1 = task("task1", "Task")
+    t2 = task("task2", "Task")
+    schedule(t1)
+    schedule(t2)
 end
