@@ -3,6 +3,9 @@ name "message_producer"
 using_library "message_driver"
 import_types_from "message_driver/Message.hpp"
 
+import_types_from 'base'
+
+
 # Declare a new task context (i.e., a component)
 #
 # The corresponding C++ class can be edited in tasks/Task.hpp and
@@ -15,6 +18,7 @@ task_context "Task" do
    # Data can be written using _output.write(value). _output.connected() returns
    # if this output is connected to an input or not.
    output_port "messages", "message_driver/Message"
+   output_port "traj", "/base/Trajectory"
 
    periodic 1.0
 

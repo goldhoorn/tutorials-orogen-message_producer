@@ -46,6 +46,14 @@ void Task::updateHook()
 
     message_driver::Message msg = mpMessageDriver->createMessage();
     _messages.write(msg);
+
+    ::base::Trajectory traj;
+    std::vector<double> v;
+    for(int i=0;i<3;i++){
+     v.push_back(rand()/rand());   
+    }
+    traj.spline.interpolate(v);
+    _traj.write(traj);
 }
 // void Task::errorHook()
 // {
