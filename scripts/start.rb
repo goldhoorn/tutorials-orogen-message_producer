@@ -1,4 +1,5 @@
 require 'orocos'
+require 'vizkit'
 
 include Orocos
 Orocos.initialize
@@ -10,13 +11,11 @@ Orocos.run 'message_producer::Task' => 'message_producer' do
     message_producer.start
 
     reader = message_producer.messages.reader
+    reader2 = message_producer.traj.reader
 
-    while true
-        if msg = reader.read_new
-            puts "#{msg.time} #{msg.content}"
-        end 
+    Vizkit.display message_producer.traj
+    Vizkit.display message_producer
 
-        sleep 0.5
-    end
+    Vizkit.exec
 end
 
